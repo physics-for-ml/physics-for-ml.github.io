@@ -89,6 +89,7 @@
             padding: 25px;
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
         .speaker-card:hover {
@@ -141,6 +142,96 @@
             color: #7f8c8d;
             font-size: 0.95rem;
             font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+                .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .dropdown-toggle:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .dropdown-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content.open {
+            max-height: 500px;
+        }
+
+        .dropdown-inner {
+            padding: 20px;
+            border-left: 3px solid #3498db;
+        }
+
+        .dropdown-inner h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .dropdown-inner p {
+            color: #555;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .dropdown-inner ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .dropdown-inner li {
+            color: #555;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .speaker-link {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border: 1px solid #3498db;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .speaker-link:hover {
+            background: #3498db;
+            color: white;
         }
 
         .info-section {
@@ -359,28 +450,96 @@
             <h2>Recent Speakers</h2>
             <div class="speaker-grid">
                 <div class="speaker-card past">
-                    <div class="speaker-name">Noam Itzhak Levi</div>
-                    <div class="speaker-affiliation">EPFL</div>
-                    <div class="speaker-title">The Physics of Learnable Data</div>
-                    <div class="speaker-date">Tuesday, July 1, 2025</div>
+                    <div class="speaker-header">
+                        <div class="speaker-name">Noam Itzhak Levi</div>
+                        <div class="speaker-affiliation">EPFL</div>
+                        <div class="speaker-title">The Physics of Learnable Data</div>
+                        <div class="speaker-date">Tuesday, July 1, 2025</div>
+                    </div>
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span>Additional Information</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <h4>Publications</h4>
+                            <p>The publications this presentation was based on can be fund
+                                <a href="https://arxiv.org/pdf/2306.14975">here</a>,
+                                <a href="https://arxiv.org/pdf/2311.01358">here</a> and 
+                                <a href="https://arxiv.org/pdf/2410.13770">here</a>.
+                            </p>
+                            <a href="#" class="speaker-link">Watch Recording</a>
+                            <a href="#" class="speaker-link">Download Slides</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="speaker-card past">
+                    <div class="speaker-header">
+                        <div class="speaker-name">Oren Neumann</div>
+                        <div class="speaker-affiliation">Goethe Universität Frankfurt</div>
+                        <div class="speaker-title">Reinforcement Learning and Scaling Laws: a Case Study of AlphaZero</div>
+                        <div class="speaker-date">Tuesday, June 17, 2025</div>
+                    </div>
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span>Additional Information</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <h4>Publications</h4>
+                            <p>The publications this presentation was based on can be fund
+                                <a href="https://arxiv.org/abs/2210.00849">here</a> and 
+                                <a href="https://arxiv.org/abs/2412.11979">here</a>.
+                            </p>
+                            <a href="#" class="speaker-link">Watch Recording</a>
+                            <a href="#" class="speaker-link">Download Slides</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="speaker-card past">
-                    <div class="speaker-name">Oren Neumann</div>
-                    <div class="speaker-affiliation">Goethe Universität Frankfurt</div>
-                    <div class="speaker-title">Reinforcement Learning and Scaling Laws: a Case Study of AlphaZero</div>
-                    <div class="speaker-date">Tuesday, June 17, 2025</div>
+                    <div class="speaker-header">
+                        <div class="speaker-name">Marcel Kühn</div>
+                        <div class="speaker-affiliation">Universität Leipzig</div>
+                        <div class="speaker-title">Anti-Correlated Noise in Epoch-Based Stochastic Gradient Descent and its Implications</div>
+                        <div class="speaker-date">Tuesday, June 3, 2025</div>
+                    </div>
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span>Additional Information</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <h4>Publications</h4>
+                            <p>The publications this presentation was based on can be fund
+                                <a href="https://arxiv.org/abs/2306.05300">here</a>.
+                            </p>
+                            <a href="#" class="speaker-link">Watch Recording</a>
+                            <a href="#" class="speaker-link">Download Slides</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="speaker-card past">
-                    <div class="speaker-name">Marcel Kühn</div>
-                    <div class="speaker-affiliation">Universität Leipzig</div>
-                    <div class="speaker-title">Anti-Correlated Noise in Epoch-Based Stochastic Gradient Descent and its Implications</div>
-                    <div class="speaker-date">Tuesday, June 3, 2025</div>
-                </div>
-                <div class="speaker-card past">
-                    <div class="speaker-name">Noa Rubin<sup>1</sup>, Kirsten Fischer<sup>2,3</sup>, Javed Lindner<sup>2,3</sup></div>
-                    <div class="speaker-affiliation"><sup>1</sup>Hebrew University of Jerusalem, <sup>2</sup>Forschungszentrum Jülich, <sup>3</sup>RWTH Aachen</div>
-                    <div class="speaker-title">From Kernels to Features: A Multi-Scale Adaptive Theory of Feature Learning</div>
-                    <div class="speaker-date">Tuesday, May 20, 2025</div>
+                    <div class="speaker-header">
+                        <div class="speaker-name">Noa Rubin<sup>1</sup>, Kirsten Fischer<sup>2,3</sup>, Javed Lindner<sup>2,3</sup></div>
+                        <div class="speaker-affiliation"><sup>1</sup>Hebrew University of Jerusalem, <sup>2</sup>Forschungszentrum Jülich, <sup>3</sup>RWTH Aachen</div>
+                        <div class="speaker-title">From Kernels to Features: A Multi-Scale Adaptive Theory of Feature Learning</div>
+                        <div class="speaker-date">Tuesday, May 20, 2025</div>
+                    </div>
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span>Additional Information</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="dropdown-inner">
+                            <h4>Publications</h4>
+                            <p>The publications this presentation was based on can be fund
+                                <a href="https://arxiv.org/html/2502.03210v1">here</a>.
+                            </p>
+                            <a href="#" class="speaker-link">Watch Recording</a>
+                            <a href="#" class="speaker-link">Download Slides</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -431,6 +590,23 @@
     </footer>
 
     <script>
+        function toggleDropdown(button) {
+            const content = button.nextElementSibling;
+            const arrow = button.querySelector('.dropdown-arrow');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                if (dropdown !== content) {
+                    dropdown.classList.remove('open');
+                    dropdown.previousElementSibling.querySelector('.dropdown-arrow').classList.remove('open');
+                }
+            });
+            
+            // Toggle current dropdown
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -466,6 +642,16 @@
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.speaker-card')) {
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.classList.remove('open');
+                    dropdown.previousElementSibling.querySelector('.dropdown-arrow').classList.remove('open');
+                });
+            }
         });
     </script>
 </body>
