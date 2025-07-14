@@ -33,7 +33,7 @@ const allSpeakers = [
             }
         ],
         recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#/files_mediaviewer/SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
-        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#pdfviewer"
+        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_1_7_25_Noam_Levi.pdf"
     },
     {
         name: "Oren Neumann",
@@ -53,7 +53,9 @@ const allSpeakers = [
                 year: "2024",
                 url: "https://arxiv.org/abs/2412.11979"
             }
-        ]
+        ],
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5",
+        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_17_06_25_Oren_Neumann.pdf"
     },
     {
         name: "Marcel Kühn",
@@ -67,7 +69,9 @@ const allSpeakers = [
                 year: "2023",
                 url: "https://arxiv.org/abs/2306.05300"
             }
-        ]
+        ],
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5",
+        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_3_6_2025_Marcel_Kuehn.pdf"
     },
     {
         name: "Noa Rubin<sup>1</sup>, Kirsten Fischer<sup>2,3</sup>, Javed Lindner<sup>2,3</sup>",
@@ -81,7 +85,9 @@ const allSpeakers = [
                 year: "2025",
                 url: "https://arxiv.org/html/2502.03210v1"
             }
-        ]
+        ],
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5",
+        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_13_05_25_Rubin_Fischer_Lindner.pdf"
     }
 ];
 
