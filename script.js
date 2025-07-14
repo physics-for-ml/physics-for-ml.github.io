@@ -31,7 +31,9 @@ const allSpeakers = [
                 year: "2024",
                 url: "https://arxiv.org/pdf/2410.13770"
             }
-        ]
+        ],
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#/files_mediaviewer/SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
+        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#pdfviewer"
     },
     {
         name: "Oren Neumann",
@@ -129,8 +131,8 @@ function generateSpeakerHTML(speaker) {
                     <ul class="publications-list">
                         ${publicationsList}
                     </ul>
-                    <a href="#" class="speaker-link">Watch Recording</a>
-                    <a href="#" class="speaker-link">Download Slides</a>
+                    <a href=${speaker.recording} class="speaker-link">Watch Recording</a>
+                    <a href=${speaker.slides} class="speaker-link">Download Slides</a>
                 </div>
             </div>
         </div>
