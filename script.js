@@ -70,7 +70,6 @@ const allSpeakers = [
                 url: "https://arxiv.org/abs/2306.05300"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5",
         slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_3_6_2025_Marcel_Kuehn.pdf"
     },
     {
@@ -86,7 +85,6 @@ const allSpeakers = [
                 url: "https://arxiv.org/html/2502.03210v1"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5",
         slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_13_05_25_Rubin_Fischer_Lindner.pdf"
     }
 ];
@@ -121,6 +119,10 @@ function generateSpeakerHTML(speaker) {
             </div>
         </li>`
     ).join('');
+
+    // Check if recording exists
+    const recordingLink = speaker.recording ? 
+        `<a href="${speaker.recording}" class="speaker-link">Watch Recording</a>` : '';
     
     return `
         <div class="speaker-card past speaker-card-collapsed">
@@ -137,7 +139,7 @@ function generateSpeakerHTML(speaker) {
                     <ul class="publications-list">
                         ${publicationsList}
                     </ul>
-                    <a href=${speaker.recording} class="speaker-link">Watch Recording</a>
+                    ${recordingLink}
                     <a href=${speaker.slides} class="speaker-link">Download Slides</a>
                 </div>
             </div>
