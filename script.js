@@ -32,7 +32,7 @@ const allSpeakers = [
                 url: "https://arxiv.org/pdf/2410.13770"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#/files_mediaviewer/SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
         slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_1_7_25_Noam_Levi.pdf"
     },
     {
@@ -54,7 +54,7 @@ const allSpeakers = [
                 url: "https://arxiv.org/abs/2412.11979"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5",
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_2025_06_17_Oren_Neumann.mp4",
         slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_17_06_25_Oren_Neumann.pdf"
     },
     {
@@ -137,7 +137,7 @@ function generateSpeakerHTML(speaker) {
                     <ul class="publications-list">
                         ${publicationsList}
                     </ul>
-                    <a href=${speaker.recording} class="speaker-link">Watch Recording</a>
+                    <a href="#" onclick="openVideoPlayer('${speaker.recording}', '${speaker.name}', '${speaker.title}')" class="speaker-link">Watch Recording</a>
                     <a href=${speaker.slides} class="speaker-link">Download Slides</a>
                 </div>
             </div>
@@ -320,4 +320,53 @@ document.querySelectorAll('.section, .info-section, .cta-section').forEach(secti
     section.style.transform = 'translateY(20px)';
     section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(section);
+});
+
+// Video player functionality
+function openVideoPlayer(videoUrl, speakerName, talkTitle) {
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'video-modal';
+    modal.innerHTML = `
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3>${speakerName}</h3>
+                <p>${talkTitle}</p>
+                <button class="video-modal-close" onclick="closeVideoPlayer()">&times;</button>
+            </div>
+            <div class="video-container">
+                <video controls width="100%" height="400">
+                    <source src="${videoUrl}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add event listener to close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeVideoPlayer();
+        }
+    });
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVideoPlayer() {
+    const modal = document.querySelector('.video-modal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeVideoPlayer();
+    }
 });
