@@ -122,7 +122,7 @@ function generateSpeakerHTML(speaker) {
 
     // Check if recording exists
     const recordingLink = speaker.recording ? 
-        `<a href="${speaker.recording}" class="speaker-link">Watch Recording</a>` : '';
+        `<a href="#" onclick="openVideoPlayer('${speaker.recording}', '${speaker.name}', '${speaker.title}')" class="speaker-link">Watch Recording</a>` : '';
     
     return `
         <div class="speaker-card past speaker-card-collapsed">
@@ -139,7 +139,7 @@ function generateSpeakerHTML(speaker) {
                     <ul class="publications-list">
                         ${publicationsList}
                     </ul>
-                    <a href="#" onclick="openVideoPlayer('${speaker.recording}', '${speaker.name}', '${speaker.title}')" class="speaker-link">Watch Recording</a>
+                    ${recordingLink}
                     <a href=${speaker.slides} class="speaker-link">Download Slides</a>
                 </div>
             </div>
