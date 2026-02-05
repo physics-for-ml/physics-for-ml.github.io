@@ -1,5 +1,55 @@
 const SPEAKERS_DATA = [
     {
+        name: "Jean Barbier",
+        affiliation: "ICTP Trieste",
+        date: "Thursday, February 12, 2026",
+        title: " ",
+        publications: [
+        ]
+    },
+    {
+        name: "Lorenzo Tiberi",
+        affiliation: "Harvard University",
+        date: "Tuesday, January 27, 2026",
+        title: "Dissecting the Interplay of Attention Paths in a Statistical Mechanics Theory of Transformers",
+        publications: [
+            {
+                title: "Dissecting the Interplay of Attention Paths in a Statistical Mechanics Theory of Transformers",
+                authors: "Lorenzo Tiberi Francesca Mignacco, Kazuki Irie, Haim Sompolinsky",
+                year: "2024",
+                url: "https://proceedings.neurips.cc/paper_files/paper/2024/file/8523a98265ceae12afd34113aa6c5cca-Paper-Conference.pdf"
+            }
+        ]
+    },
+    {
+        name: "Jacob Zavatone-Veth",
+        affiliation: "Harvard University",
+        date: "Tuesday, January 20, 2026",
+        title: "Risk and cross validation in ridge regression with correlated samples",
+        publications: [
+            {
+                title: "Risk and cross validation in ridge regression with correlated samples",
+                authors: "Alexander Atanasov, Jacob A. Zavatone-Veth, Cengiz Pehlevan",
+                year: "2025",
+                url: "https://openreview.net/pdf?id=GMwKpJ9TiR"
+            }
+        ]
+    },
+    {
+        name: "Noa Rubin",
+        affiliation: "Hebrew University, Jerusalem",
+        date: "Tuesday, November 25, 2025",
+        title: "Mitigating the curse of detail: Scaling arguments for sample complexity and feature learning",
+        publications: [
+            {
+                title: "Mitigating the curse of detail: Scaling arguments for sample complexity and feature learning",
+                authors: "Noa Rubin, Orit Davidovich, and Zohar Ringel",
+                year: "2025",
+                url: "https://arxiv.org/pdf/2512.04165"
+            }
+        ]
+    },
+    {
         name: "Noam Itzhak Levi",
         affiliation: "EPFL",
         date: "Tuesday, July 1, 2025",
@@ -78,5 +128,75 @@ const SPEAKERS_DATA = [
             }
         ],
         slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_13_05_25_Rubin_Fischer_Lindner.pdf"
+    },
+    {
+        name: "Alexander van Meegen",
+        affiliation: "Harvard University",
+        date: "Monday, June 17, 2024",
+        title: "Coding schemes in deep networks",
+        publications: []
+    },
+    {
+        name: "Francesco Cagnetta",
+        affiliation: "EPFL Lausanne",
+        date: "Wednesday, February 7, 2024",
+        title: "Learning hierarchical grammars with neural networks: towards a theory of deep representation learning",
+        publications: []
+    },
+    {
+        name: "Taro Toyoizumi",
+        affiliation: "RIKEN",
+        date: "Wednesday, November 15, 2023",
+        title: "Information theoretical approaches to model synaptic plasticity",
+        publications: []
+    },
+    {
+        name: "Pietro Rotondo",
+        affiliation: "University of Parma",
+        date: "Tuesday, May 9, 2023",
+        title: "Statistical mechanics of deep learning beyond the infinite-width limit",
+        publications: []
+    },
+    {
+        name: "Manfred Opper",
+        affiliation: "TU Berlin",
+        date: "Tuesday, May 2, 2023",
+        title: "Computing learning curves for large machine learning models using the replica approach",
+        publications: []
+    },
+    {
+        name: "Bruno Loureiro",
+        affiliation: "ENS Paris",
+        date: "Tuesday, April 4, 2023",
+        title: "Dimension-free limits of stochastic gradient descent for two-layers neural networks",
+        publications: []
+    },
+    {
+        name: "Kirsten Fischer",
+        affiliation: "Forschungszentrum Jülich",
+        date: "Tuesday, March 21, 2023",
+        title: "",
+        publications: []
+    },
+    {
+        name: "Asem Wardak",
+        affiliation: "Harvard University",
+        date: "Tuesday, February 14, 2023",
+        title: "Extended Anderson Criticality in Heavy-Tailed Neural Networks ",
+        publications: []
+    },
+    {
+        name: "Kirsten Fischer",
+        affiliation: "Forschungszentrum Jülich",
+        date: "Tuesday, January 17, 2023",
+        title: "",
+        publications: []
+    },
+    {
+        name: "Jamie Simon",
+        affiliation: "UC Berkeley",
+        date: "Tuesday, December 20, 2022",
+        title: "",
+        publications: []
     }
 ]

@@ -25,66 +25,57 @@
         </nav>
 
         <header>
-            <h1>Physics for Machine Learning</h1>
-            <p class="subtitle">Seminar Series</p>
-            <p class="description">
-                Homepage of the bi-weekly seminar series on theoritical physics of machine learning among the researchers of the SPOT consortium.
-            </p>
-        </header>
-
-        <div class="section" id="upcoming">
-            <h2>Upcoming Speakers</h2>
-            <div class="speaker-grid">
-                <!--
-                <div class="speaker-card upcoming">
-                    <div class="speaker-name">Dr. Sarah Chen</div>
-                    <div class="speaker-affiliation">MIT Department of Physics</div>
-                    <div class="speaker-title">Quantum Machine Learning: Bridging Two Worlds</div>
-                    <div class="speaker-date">Wednesday, January 15, 2025 • 4:00 PM EST</div>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Physics for Machine Learning</h1>
+                    <p class="subtitle">Seminar Series</p>
+                    <p class="description">
+                        Homepage of the bi-weekly seminar series on theoritical physics of machine learning among the researchers of the SPOT consortium.
+                    </p>
                 </div>
-                <div class="speaker-card upcoming">
-                    <div class="speaker-name">Prof. Michael Rodriguez</div>
-                    <div class="speaker-affiliation">Stanford Artificial Intelligence Laboratory</div>
-                    <div class="speaker-title">Neural Networks Through the Lens of Statistical Mechanics</div>
-                    <div class="speaker-date">Wednesday, January 29, 2025 • 4:00 PM EST</div>
-                </div>
-                <div class="speaker-card upcoming">
-                    <div class="speaker-name">Dr. Elena Petrov</div>
-                    <div class="speaker-affiliation">CERN & DeepMind</div>
-                    <div class="speaker-title">AI for High-Energy Physics: From Detection to Discovery</div>
-                    <div class="speaker-date">Wednesday, February 12, 2025 • 4:00 PM EST</div>
-                </div>-->
-            </div> 
-            <h3>
-                No upcoming speakers announced yet.
-            </h3>
-        </div>
-
-        <div class="section" id="recent">
-            <h2>Recent Speakers</h2>
-            <div class="speaker-grid chronological">
-                <!-- Pagination Controls -->
-                <div class="pagination-container">
-                    <div class="per-page-selector">
-                        <label for="perPageSelect">Show per page:</label>
-                        <select id="perPageSelect" onchange="changePerPage()">
-                            <option value="2">2</option>
-                            <option value="4">4</option>
-                            <option value="5" selected>5</option>
-                            <option value="6">All</option>
-                        </select>
-                    </div>
-                    <div class="pagination-controls" id="paginationControls">
-                        <button class="pagination-button" onclick="changePage(-1)" id="prevBtn">← Previous</button>
-                        <div id="pageButtons">
-                            <!-- Page buttons will be generated dynamically -->
-                        </div>
-                        <button class="pagination-button" onclick="changePage(1)" id="nextBtn">Next →</button>
-                    </div>
-                    <span class="pagination-info" id="paginationInfo">Page <span id="currentPageInfo">1</span> of <span id="totalPagesInfo">1</span></span>
+                <div class="header-logo">
+                    <img src="logo_sketch_colored.svg" alt="Physics for ML Logo" class="logo">
                 </div>
             </div>
-        </div>
+        </header>
+
+        <!-- Upcoming Speakers Section -->
+        <section id="upcoming-speakers" class="section">
+            <div class="container">
+                <h2>Upcoming Talks</h2>
+                <div class="speaker-grid upcoming">
+                    <div class="pagination-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Past Speakers Section -->
+        <section id="speakers" class="section">
+            <div class="container">
+                <h2>Past Talks</h2>
+                <div class="speaker-grid chronological">
+                    <div class="pagination-container">
+                        <div id="paginationControls">
+                            <button id="prevBtn" onclick="changePage(-1)">&lt;</button>
+                            <div id="pageButtons"></div>
+                            <button id="nextBtn" onclick="changePage(1)">&gt;</button>
+                        </div>
+                        <div id="paginationInfo">
+                            Page <span id="currentPageInfo">1</span> of <span id="totalPagesInfo">1</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <label for="perPageSelect">Talks per page:</label>
+                            <select id="perPageSelect" onchange="changePerPage()">
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <div class="info-section" id="info">
             <h2>Seminar Information</h2>
@@ -111,11 +102,12 @@
                     <ul class="participating-groups">
                         <li><a href="https://www.nas.ewi.tudelft.nl/" target="_blank">Caterina DeBacco, TU Delft</a></li>
                         <li><a href="https://itp.uni-frankfurt.de/~gros/#physicsAI" target="_blank">Claudius Gros, University of Frankfurt</a></li>
-                        <li><a href="https://www.fz-juelich.de/en/ias/ias-6/forschung/theory-of-multi-scale-neuronal-networks" target="_blank">Moritz Helias, RWTH Aachen / Jülich Research Centre</a></li>
+                        <li><a href="https://www.fz-juelich.de/en/ias/ias-6/forschung/theory-of-multi-scale-neuronal-networks" target="_blank">Moritz Helias, RWTH Aachen / FZ Jülich</a></li>
                         <li><a href="https://www.particle-theory.rwth-aachen.de/cms/Particle-Theory/Forschung/~gfhu/Gruppe-Kraemer/lidx/1" target="_blank">Michael Krämer, RWTH Aachen</a></li>
                         <li><a href="https://phys.huji.ac.il/contacts/ringel_zohar" target="_blank">Zohar Ringel, Hebrew University</a></li>
                         <li><a href="https://home.uni-leipzig.de/rosenow/Bernd_Rosenow/Welcome.html" target="_blank">Bernd Rosenow, University of Leipzig</a></li>
                         <li><a href="https://www.uni-goettingen.de/de/588919.html" target="_blank">Peter Sollich, University of Göttingen</a></li>
+                        <li><a target="_blank">Alexander van Meegen, RWTH Aachen</a></li>
                         <li><a href="https://people.epfl.ch/lenka.zdeborova?lang=en" target="_blank">Lenka Zdeborova, EPFL</a></li>
                     </ul>
                 </div>

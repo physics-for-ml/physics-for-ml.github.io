@@ -3,16 +3,56 @@ const stickyNavElement = document.getElementById('stickyNav');
 const headerElement = document.querySelector('header');
 let currentPage = 1;
 let totalPages = 2;
-let speakersPerPage = 5;
+let speakersPerPage = 3; // Change from 5 to 3
 
 // All speakers data - will be loaded from external file
 let allSpeakers = [];
+let upcomingSpeakers = [];
+let pastSpeakers = [];
+
+// Function to parse date string and return Date object
+function parseSpeakerDate(dateString) {
+    // Assuming format: "Tuesday, July 1, 2025"
+    // Extract the date part (remove day of week)
+    const dateOnly = dateString.split(', ').slice(1).join(', ');
+    return new Date(dateOnly);
+}
+
+// Function to categorize and sort speakers
+function categorizeSpeakers() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+    
+    upcomingSpeakers = [];
+    pastSpeakers = [];
+    
+    allSpeakers.forEach(speaker => {
+        const speakerDate = parseSpeakerDate(speaker.date);
+        
+        if (speakerDate >= today) {
+            upcomingSpeakers.push(speaker);
+        } else {
+            pastSpeakers.push(speaker);
+        }
+    });
+    
+    // Sort upcoming speakers by date (earliest first)
+    upcomingSpeakers.sort((a, b) => {
+        return parseSpeakerDate(a.date) - parseSpeakerDate(b.date);
+    });
+    
+    // Sort past speakers by date (most recent first)
+    pastSpeakers.sort((a, b) => {
+        return parseSpeakerDate(b.date) - parseSpeakerDate(a.date);
+    });
+}
 
 // Function to load speakers data from external JavaScript file
 function loadSpeakersData() {
     // If using the JavaScript file approach, the data is already available
     if (typeof SPEAKERS_DATA !== 'undefined') {
         allSpeakers = SPEAKERS_DATA;
+        categorizeSpeakers(); // Add this line
         renderSpeakers();
         return;
     }
@@ -30,6 +70,9 @@ async function fetchSpeakersFromFile() {
         }
         const data = await response.text();
         allSpeakers = JSON.parse(data);
+        
+        // Categorize speakers after loading
+        categorizeSpeakers();
         
         // Initialize the page after data is loaded
         renderSpeakers();
@@ -60,6 +103,7 @@ async function fetchSpeakersFromFile() {
             // Add more fallback data as needed
         ];
         
+        categorizeSpeakers(); // Add this line
         renderSpeakers();
     }
 }
@@ -82,62 +126,63 @@ window.addEventListener('scroll', handleScroll);
 // Call once to set initial state
 handleScroll();
 
-// Function to generate speaker HTML
-function generateSpeakerHTML(speaker) {
-    // Generate publications list
-    const publicationsList = speaker.publications.map(pub => 
-        `<li>
-            <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="publication-title">${pub.title}</a>
-            <div class="publication-details">
-                <span class="publication-authors">${pub.authors}</span> • 
-                <span class="publication-year">${pub.year}</span>
-            </div>
-        </li>`
-    ).join('');
-
-    // Check if recording exists
-    const recordingLink = speaker.recording ? 
-        `<a href="#" onclick="openVideoPlayer('${speaker.recording}', '${speaker.name}', '${speaker.title}')" class="speaker-link">Watch Recording</a>` : '';
-    
-    return `
-        <div class="speaker-card past speaker-card-collapsed">
-            <div class="speaker-header" onclick="toggleSpeakerCard(this)">
-                <div class="speaker-name">${speaker.name}</div>
-                <div class="speaker-affiliation">${speaker.affiliation}</div>
-                <div class="speaker-title-visible"><strong>Title:</strong> ${speaker.title}</div>
-                <div class="speaker-date">${speaker.date}</div>
-                <button class="speaker-expand-toggle">▼ Show details</button>
-            </div>
-            <div class="speaker-details">
-                <div class="dropdown-inner">
-                    <h4>Publications</h4>
-                    <ul class="publications-list">
-                        ${publicationsList}
-                    </ul>
-                    ${recordingLink}
-                    <a href=${speaker.slides} class="speaker-link">Download Slides</a>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
 // Function to render speakers for current pagination settings
-function renderSpeakers() {
-    const speakerGrid = document.querySelector('.speaker-grid.chronological');
+function renderUpcomingSpeakers() {
+    const speakerGrid = document.querySelector('.speaker-grid.upcoming');
+    if (!speakerGrid) return;
+    
     const paginationContainer = speakerGrid.querySelector('.pagination-container');
     
     // Remove all existing speaker pages but keep pagination
     const existingPages = speakerGrid.querySelectorAll('.speakers-page');
     existingPages.forEach(page => page.remove());
     
-    if (speakersPerPage >= allSpeakers.length) {
+    if (upcomingSpeakers.length === 0) {
+        const noSpeakersMessage = document.createElement('div');
+        noSpeakersMessage.className = 'speakers-page active';
+        noSpeakersMessage.innerHTML = '<p style="text-align: center; padding: 2rem;">No upcoming talks scheduled at the moment.</p>';
+        speakerGrid.insertBefore(noSpeakersMessage, paginationContainer);
+        if (paginationContainer) paginationContainer.style.display = 'none';
+        return;
+    }
+    
+    // For upcoming speakers, show all without pagination
+    const allSpeakersPage = document.createElement('div');
+    allSpeakersPage.className = 'speakers-page active';
+    allSpeakersPage.id = 'upcoming-page-1';
+    allSpeakersPage.innerHTML = upcomingSpeakers.map(speaker => generateSpeakerHTML(speaker, true)).join('');
+    
+    speakerGrid.insertBefore(allSpeakersPage, paginationContainer);
+    if (paginationContainer) paginationContainer.style.display = 'none';
+}
+
+function renderPastSpeakers() {
+    const speakerGrid = document.querySelector('.speaker-grid.chronological');
+    if (!speakerGrid) return;
+    
+    const paginationContainer = speakerGrid.querySelector('.pagination-container');
+    
+    // Remove all existing speaker pages but keep pagination
+    const existingPages = speakerGrid.querySelectorAll('.speakers-page');
+    existingPages.forEach(page => page.remove());
+    
+    if (pastSpeakers.length === 0) {
+        const noSpeakersMessage = document.createElement('div');
+        noSpeakersMessage.className = 'speakers-page active';
+        noSpeakersMessage.innerHTML = '<p style="text-align: center; padding: 2rem;">No past talks available.</p>';
+        speakerGrid.insertBefore(noSpeakersMessage, paginationContainer);
+        document.getElementById('paginationControls').style.display = 'none';
+        document.getElementById('paginationInfo').style.display = 'none';
+        return;
+    }
+    
+    if (speakersPerPage >= pastSpeakers.length) {
         // Show all speakers on one page
         totalPages = 1;
         const allSpeakersPage = document.createElement('div');
         allSpeakersPage.className = 'speakers-page active';
         allSpeakersPage.id = 'page-1';
-        allSpeakersPage.innerHTML = allSpeakers.map(speaker => generateSpeakerHTML(speaker)).join('');
+        allSpeakersPage.innerHTML = pastSpeakers.map(speaker => generateSpeakerHTML(speaker, false)).join('');
         
         speakerGrid.insertBefore(allSpeakersPage, paginationContainer);
         
@@ -145,18 +190,18 @@ function renderSpeakers() {
         document.getElementById('paginationInfo').style.display = 'none';
     } else {
         // Calculate total pages
-        totalPages = Math.ceil(allSpeakers.length / speakersPerPage);
+        totalPages = Math.ceil(pastSpeakers.length / speakersPerPage);
         
         // Generate pages
         for (let page = 1; page <= totalPages; page++) {
             const startIndex = (page - 1) * speakersPerPage;
             const endIndex = startIndex + speakersPerPage;
-            const pageSpeakers = allSpeakers.slice(startIndex, endIndex);
+            const pageSpeakers = pastSpeakers.slice(startIndex, endIndex);
             
             const pageElement = document.createElement('div');
             pageElement.className = `speakers-page ${page === 1 ? 'active' : ''}`;
             pageElement.id = `page-${page}`;
-            pageElement.innerHTML = pageSpeakers.map(speaker => generateSpeakerHTML(speaker)).join('');
+            pageElement.innerHTML = pageSpeakers.map(speaker => generateSpeakerHTML(speaker, false)).join('');
             
             speakerGrid.insertBefore(pageElement, paginationContainer);
         }
@@ -173,30 +218,137 @@ function renderSpeakers() {
     updatePaginationControls();
 }
 
-// Function to generate page buttons dynamically
-function generatePageButtons() {
-    const pageButtonsContainer = document.getElementById('pageButtons');
-    let buttonsHTML = '';
-    
-    for (let i = 1; i <= totalPages; i++) {
-        buttonsHTML += `<button class="pagination-button ${i === 1 ? 'active' : ''}" onclick="goToPage(${i})" id="page${i}Btn">${i}</button>`;
-    }
-    
-    pageButtonsContainer.innerHTML = buttonsHTML;
+function renderSpeakers() {
+    renderUpcomingSpeakers();
+    renderPastSpeakers();
 }
 
-// Function to change items per page
+// Function to generate speaker HTML
+function generateSpeakerHTML(speaker, isUpcoming = false) {
+    // Generate publications list
+    const publicationsList = speaker.publications.map(pub => 
+        `<li>
+            <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="publication-title">${pub.title}</a>
+            <div class="publication-details">
+                <span class="publication-authors">${pub.authors}</span> • 
+                <span class="publication-year">${pub.year}</span>
+            </div>
+        </li>`
+    ).join('');
+
+    // Check if recording exists (only for past talks)
+    const recordingLink = !isUpcoming && speaker.recording ? 
+        `<a href="#" onclick="openVideoPlayer('${speaker.recording}', '${speaker.name}', '${speaker.title}')" class="speaker-link">Watch Recording</a>` : '';
+    
+    // Slides link
+    const slidesLink = speaker.slides ? 
+        `<a href="${speaker.slides}" class="speaker-link">Download Slides</a>` : '';
+    
+    const cardClass = isUpcoming ? 'upcoming' : 'past';
+    
+    return `
+        <div class="speaker-card ${cardClass} speaker-card-collapsed">
+            <div class="speaker-header" onclick="toggleSpeakerCard(this)">
+                <div class="speaker-name">${speaker.name}</div>
+                <div class="speaker-affiliation">${speaker.affiliation}</div>
+                <div class="speaker-title-visible"><strong>Title:</strong> ${speaker.title}</div>
+                <div class="speaker-date">${speaker.date}</div>
+                <button class="speaker-expand-toggle">▼ Show details</button>
+            </div>
+            <div class="speaker-details">
+                <div class="dropdown-inner">
+                    <h4>Publications</h4>
+                    <ul class="publications-list">
+                        ${publicationsList}
+                    </ul>
+                    ${recordingLink}
+                    ${slidesLink}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Function to generate page buttons dynamically with ellipsis for many pages
+function generatePageButtons() {
+    const pageButtonsContainer = document.getElementById('pageButtons');
+    pageButtonsContainer.innerHTML = '';
+    
+    const maxVisibleButtons = 7; // Maximum number of page buttons to show
+    
+    if (totalPages <= maxVisibleButtons) {
+        // Show all buttons if total pages is small
+        for (let i = 1; i <= totalPages; i++) {
+            createPageButton(i, pageButtonsContainer);
+        }
+    } else {
+        // Always show first page
+        createPageButton(1, pageButtonsContainer);
+        
+        // Determine range of pages to show around current page
+        let startPage, endPage;
+        
+        if (currentPage <= 3) {
+            // Near the beginning: show 1 2 3 4 ... last
+            startPage = 2;
+            endPage = 4;
+        } else if (currentPage >= totalPages - 2) {
+            // Near the end: show 1 ... last-3 last-2 last-1 last
+            startPage = totalPages - 3;
+            endPage = totalPages - 1;
+        } else {
+            // In the middle: show 1 ... current-1 current current+1 ... last
+            startPage = currentPage - 1;
+            endPage = currentPage + 1;
+        }
+        
+        // Add left ellipsis if needed
+        if (startPage > 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            ellipsis.className = 'page-ellipsis';
+            pageButtonsContainer.appendChild(ellipsis);
+        }
+        
+        // Show middle pages
+        for (let i = startPage; i <= endPage; i++) {
+            createPageButton(i, pageButtonsContainer);
+        }
+        
+        // Add right ellipsis if needed
+        if (endPage < totalPages - 1) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            ellipsis.className = 'page-ellipsis';
+            pageButtonsContainer.appendChild(ellipsis);
+        }
+        
+        // Always show last page
+        createPageButton(totalPages, pageButtonsContainer);
+    }
+}
+
+// Helper function to create a page button
+function createPageButton(pageNum, container) {
+    const button = document.createElement('button');
+    button.textContent = pageNum;
+    button.className = pageNum === currentPage ? 'active' : '';
+    button.onclick = () => goToPage(pageNum);
+    container.appendChild(button);
+}
+
+// Function to change items per page (only affects past speakers)
 function changePerPage() {
     const selectElement = document.getElementById('perPageSelect');
-    const selectedValue = parseInt(selectElement.value);
+    const selectedValue = selectElement.value;
     
-    if (selectedValue === 6) {
-        speakersPerPage = allSpeakers.length; // Show all
+    if (selectedValue === 'all') {
+        speakersPerPage = pastSpeakers.length; // Show all
     } else {
-        speakersPerPage = selectedValue;
+        speakersPerPage = parseInt(selectedValue);
     }
     
-    renderSpeakers();
+    renderPastSpeakers();
 }
 
 // Pagination functionality
@@ -212,16 +364,15 @@ function goToPage(pageNumber) {
     
     // Hide current page
     const currentPageElement = document.getElementById(`page-${currentPage}`);
-    const currentPageBtn = document.getElementById(`page${currentPage}Btn`);
     if (currentPageElement) currentPageElement.classList.remove('active');
-    if (currentPageBtn) currentPageBtn.classList.remove('active');
     
     // Show new page
     currentPage = pageNumber;
     const newPageElement = document.getElementById(`page-${currentPage}`);
-    const newPageBtn = document.getElementById(`page${currentPage}Btn`);
     if (newPageElement) newPageElement.classList.add('active');
-    if (newPageBtn) newPageBtn.classList.add('active');
+    
+    // Regenerate page buttons to update ellipsis position
+    generatePageButtons();
     
     // Update pagination controls
     updatePaginationControls();
