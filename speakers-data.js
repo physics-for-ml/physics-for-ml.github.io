@@ -3,8 +3,14 @@ const SPEAKERS_DATA = [
         name: "Jean Barbier",
         affiliation: "ICTP Trieste",
         date: "Thursday, February 12, 2026",
-        title: " ",
+        title: "Statistical physics of deep (supervised) learning",
         publications: [
+            {
+	        title: "Statistical physics of deep learning: Optimal learning of a multi-layer perceptron near interpolation",
+		authors: "Jean Barbier, Francesco Camilli, Minh-Toan Nguyen, Mauro Pastore, Rudy Skerk",
+		year: "2025",
+		url: "https://arxiv.org/pdf/2510.24616"
+            }
         ]
     },
     {
