@@ -235,7 +235,7 @@ h1 {
     border: 1px solid #e9ecef;
     border-radius: 8px;
     padding: 15px;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     margin-bottom: 20px;
@@ -243,7 +243,6 @@ h1 {
 
 .speaker-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
 }
 
 .speaker-card::before {
@@ -267,14 +266,13 @@ h1 {
 
 .speaker-header {
     cursor: pointer;
-    padding: 5px 0;
+    padding: 5px;
+    margin: -5px;
+    border-radius: 5px;
 }
 
 .speaker-header:hover {
     background: #f8f9fa;
-    border-radius: 5px;
-    margin: -5px;
-    padding: 5px;
 }
 
 .speaker-name {
