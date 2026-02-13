@@ -11,7 +11,8 @@ const SPEAKERS_DATA = [
 		year: "2025",
 		url: "https://arxiv.org/pdf/2510.24616"
             }
-        ]
+        ],
+        recording: "https://fz-juelich.sciebo.de/s/46JwQe37HtTxfHK/download?path=%2F&files=video1592988713.mp4"
     },
     {
         name: "Lorenzo Tiberi",
