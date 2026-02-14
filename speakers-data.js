@@ -12,7 +12,8 @@ const SPEAKERS_DATA = [
 		url: "https://arxiv.org/pdf/2510.24616"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/46JwQe37HtTxfHK/download?path=%2F&files=video1592988713.mp4"
+        recording: "https://fz-juelich.sciebo.de/s/46JwQe37HtTxfHK/download?path=%2F&files=video1592988713.mp4",
+        slides: "https://fz-juelich.sciebo.de/s/46JwQe37HtTxfHK/download?path=%2F&files=Jean_Barbier_StatMechMLPs_SPOT.pdf"
     },
     {
         name: "Lorenzo Tiberi",
