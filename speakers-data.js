@@ -82,7 +82,7 @@ const SPEAKERS_DATA = [
                 url: "https://arxiv.org/pdf/2410.13770"
             }
         ],
-        recording: "https://rwth-aachen.sciebo.de/s/XeF3XC3XFBsAog9",
+        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
         slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_1_7_25_Noam_Levi.pdf"
     },
     {
