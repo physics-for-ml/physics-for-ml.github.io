@@ -12,8 +12,8 @@ const SPEAKERS_DATA = [
 		url: "https://arxiv.org/pdf/2510.24616"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/46JwQe37HtTxfHK/download?path=%2F&files=video1592988713.mp4",
-        slides: "https://fz-juelich.sciebo.de/s/46JwQe37HtTxfHK/download?path=%2F&files=Jean_Barbier_StatMechMLPs_SPOT.pdf"
+        recording: "https://fz-juelich.sciebo.de/public.php/dav/files/46JwQe37HtTxfHK/video1592988713.mp4",
+        slides: "https://fz-juelich.sciebo.de/public.php/dav/files/eqaSJNrCxkqk2mJ/"
     },
     {
         name: "Lorenzo Tiberi",
@@ -82,8 +82,8 @@ const SPEAKERS_DATA = [
                 url: "https://arxiv.org/pdf/2410.13770"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
-        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_1_7_25_Noam_Levi.pdf"
+        recording: "https://fz-juelich.sciebo.de/public.php/dav/files/c3z3A4696lgIlz5/SPOT_Seminar_2025_07_01_Noam_Levi.mp4",
+        slides: "https://fz-juelich.sciebo.de/public.php/dav/files/c3z3A4696lgIlz5/SPOT_Seminar_1_7_25_Noam_Levi.pdf"
     },
     {
         name: "Oren Neumann",
@@ -104,8 +104,8 @@ const SPEAKERS_DATA = [
                 url: "https://arxiv.org/abs/2412.11979"
             }
         ],
-        recording: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_2025_06_17_Oren_Neumann.mp4",
-        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_17_06_25_Oren_Neumann.pdf"
+        recording: "https://fz-juelich.sciebo.de/public.php/dav/files/c3z3A4696lgIlz5/SPOT_Seminar_2025_06_17_Oren_Neumann.mp4",
+        slides: "https://fz-juelich.sciebo.de/public.php/dav/files/c3z3A4696lgIlz5/SPOT_Seminar_17_06_25_Oren_Neumann.pdf"
     },
     {
         name: "Marcel Kühn",
@@ -120,7 +120,7 @@ const SPEAKERS_DATA = [
                 url: "https://arxiv.org/abs/2306.05300"
             }
         ],
-        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_3_6_2025_Marcel_Kuehn.pdf"
+        slides: "https://fz-juelich.sciebo.de/public.php/dav/files/c3z3A4696lgIlz5/SPOT_Seminar_3_6_2025_Marcel_Kuehn.pdf"
     },
     {
         name: "Noa Rubin<sup>1</sup>, Kirsten Fischer<sup>2,3</sup>, Javed Lindner<sup>2,3</sup>",
@@ -135,7 +135,7 @@ const SPEAKERS_DATA = [
                 url: "https://arxiv.org/html/2502.03210v1"
             }
         ],
-        slides: "https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5/download?path=%2F&files=SPOT_Seminar_13_05_25_Rubin_Fischer_Lindner.pdf"
+        slides: "https://fz-juelich.sciebo.de/public.php/dav/files/c3z3A4696lgIlz5/SPOT_Seminar_13_05_25_Rubin_Fischer_Lindner.pdf"
     },
     {
         name: "Alexander van Meegen",
