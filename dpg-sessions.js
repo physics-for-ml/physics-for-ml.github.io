@@ -53,7 +53,7 @@ function renderDPGSessions(sessions) {
 
             const slidesLink = talk.pdf_link
                 ? '<a href="' + talk.pdf_link + '" target="_blank" rel="noopener noreferrer" class="dpg-link dpg-link-slides">Download Slides</a>'
-                : '<span class="dpg-slides-pending">Slides coming soon</span>';
+                : '<span class="dpg-slides-pending">Slides not available</span>';
 
             html += `
                 <div class="dpg-talk-card dpg-card-collapsed${isInvited ? ' dpg-invited' : ''}">
