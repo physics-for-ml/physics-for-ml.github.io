@@ -1,42 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPG Spring Meeting 2026 &mdash; Physics of AI Sessions</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="dpg2026.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DPG Spring Meeting 2026 — Physics of AI Sessions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <!-- shared design tokens -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="dpg2026.css" />
+  <script>
+    /* apply stored theme before paint to avoid flash */
+    (function() {
+      var t = localStorage.getItem('phys4ml-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
-    <div class="container">
-        <!-- Navigation -->
-        <nav class="dpg-nav">
-            <a href="index.html" class="dpg-back-link">&larr; Back to Seminar Series</a>
-        </nav>
+<div class="dpg-page">
 
-        <header class="dpg-header">
-            <div class="header-content">
-                <div class="header-logo">
-                    <img src="logo_sketch_colored.svg" alt="Physics for ML Logo" class="logo">
-                </div>
-                <div class="header-text">
-                    <h1>DPG Spring Meeting 2026</h1>
-                    <p class="subtitle">Focus Sessions: Physics of AI</p>
-                    <p class="description">Dresden, 9&ndash;14 March 2026 &middot; Room G&Ouml;R/0226</p>
-                </div>
-            </div>
-        </header>
-
-        <div id="dpg-sessions-container"></div>
+  <!-- topbar -->
+  <div class="topbar">
+    <div class="crumbs">
+      / <a href="index.html" style="color:var(--ink-3);text-decoration:none">physics-for-ml</a>
+      &nbsp;/ <span>events</span> /&nbsp;<span>dpg-2026</span>
     </div>
+    <button class="theme-switch" id="dpgThemeToggle" title="Toggle theme" aria-label="Toggle theme"></button>
+  </div>
 
-    <footer>
-    </footer>
+  <!-- hero -->
+  <div class="hero-head">
+    <span class="tag">CONFERENCE</span>
+    <span>Focus Sessions: Physics of AI</span>
+    <span>·</span>
+    <span>9–14 March 2026</span>
+  </div>
+  <h1 class="title">DPG Spring Meeting <em>2026</em>.</h1>
+  <p class="hero-abstract">
+    The SPOT consortium at the DPG Spring Meeting in Dresden. Physics of AI focus sessions — talks, invited lectures, and contributed presentations on the intersection of theoretical physics and machine learning.
+  </p>
+  <div class="authors">
+    <span>Room <b>GÖR/0226</b></span>
+    <span>·</span>
+    <span>Dresden, Germany</span>
+    <span>·</span>
+    <span><a href="index.html" style="color:var(--accent);border-bottom:1px solid var(--accent)">← Back to seminar series</a></span>
+  </div>
 
-    <script src="dpg-sessions-data.js"></script>
-    <script src="dpg-sessions.js"></script>
+  <h2 class="sec"><span class="num">§1</span> Sessions</h2>
+
+  <div id="dpg-sessions-container"></div>
+
+  <div class="sheet-foot">
+    <span>Physics for ML · SPOT · IAS-6 · FZ Jülich</span>
+    <span>DPG Spring Meeting 2026 · Dresden</span>
+    <span>arXiv-style layout</span>
+  </div>
+
+</div>
+
+<script src="dpg-sessions-data.js"></script>
+<script src="dpg-sessions.js"></script>
+<script>
+  // Theme toggle for this sub-page
+  function dpgSetTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('phys4ml-theme', theme);
+    var btn = document.getElementById('dpgThemeToggle');
+    if (!btn) return;
+    if (theme === 'dark') {
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+    } else {
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var stored = localStorage.getItem('phys4ml-theme') || 'light';
+    dpgSetTheme(stored);
+
+    document.getElementById('dpgThemeToggle').addEventListener('click', function() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'light';
+      dpgSetTheme(cur === 'dark' ? 'light' : 'dark');
+    });
+  });
+</script>
 </body>
 </html>

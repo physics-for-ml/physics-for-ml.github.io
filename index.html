@@ -1,168 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics for Machine Learning Seminar Series</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics for Machine Learning — Seminar Series</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <!-- Sticky Navigation -->
-        <nav class="sticky-nav" id="stickyNav">
-            <div class="nav-container">
-                <div class="nav-title">Physics for ML</div>
-                <div class="nav-links">
-                    <a href="#upcoming-speakers">Upcoming</a>
-                    <a href="#speakers">Past Talks</a>
-                    <a href="#events">Events</a>
-                    <a href="#info">Information</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-        </nav>
+<div class="frame">
 
-        <header>
-            <div class="header-content">
-                <div class="header-text">
-                    <h1>Physics for Machine Learning</h1>
-                    <p class="subtitle">Seminar Series</p>
-                    <p class="description">
-                        Homepage of the bi-weekly seminar series on theoretical physics of machine learning among the researchers of the SPOT consortium.
-                    </p>
-                </div>
-                <div class="header-logo">
-                    <img src="logo_sketch_colored.svg" alt="Physics for ML Logo" class="logo">
-                </div>
-            </div>
-        </header>
-
-        <!-- Upcoming Speakers Section -->
-        <section id="upcoming-speakers" class="section">
-            <div class="container">
-                <h2>Upcoming Talks</h2>
-                <div class="speaker-grid upcoming">
-                    <div class="pagination-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Past Speakers Section -->
-        <section id="speakers" class="section">
-            <div class="container">
-                <h2>Past Talks</h2>
-                <div class="speaker-grid chronological">
-                    <div class="pagination-container">
-                        <div id="paginationControls">
-                            <button id="prevBtn" onclick="changePage(-1)">&lt;</button>
-                            <div id="pageButtons"></div>
-                            <button id="nextBtn" onclick="changePage(1)">&gt;</button>
-                        </div>
-                        <div id="paginationInfo">
-                            Page <span id="currentPageInfo">1</span> of <span id="totalPagesInfo">1</span>
-                        </div>
-                        <div class="pagination-controls">
-                            <label for="perPageSelect">Talks per page:</label>
-                            <select id="perPageSelect" onchange="changePerPage()">
-                                <option value="3">3</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="all">All</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Events Section -->
-        <section id="events" class="section events-section">
-            <div class="container">
-                <h2>Events</h2>
-                <div class="events-grid">
-                    <a href="dpg2026.html" class="event-card">
-                        <div class="event-card-date">9&ndash;14 March 2026</div>
-                        <div class="event-card-title">DPG Spring Meeting</div>
-                        <div class="event-card-location">Dresden</div>
-                        <div class="event-card-detail">Focus Sessions: Physics of AI</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <div class="info-section" id="info">
-            <h2>Seminar Information</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>Schedule</h3>
-                    <p>Seminars are held bi-weekly on Thursdays at 10:00 CET during the academic year.</p>
-                </div>
-                <div class="info-card">
-                    <h3>Format</h3>
-                    <p>90-minute presentations followed by discussion.</p>
-                </div>
-                <div class="info-card">
-                    <h3>Attendance</h3>
-                    <p>Online format via Zoom.</p>
-                </div>
-                <div class="info-card participating-groups-card">
-                    <h3>Participating Groups</h3>
-                    <ul class="participating-groups">
-                        <li><a href="https://www.nas.ewi.tudelft.nl/" target="_blank">Caterina DeBacco, TU Delft</a></li>
-                        <li><a href="https://itp.uni-frankfurt.de/~gros/#physicsAI" target="_blank">Claudius Gros, University of Frankfurt</a></li>
-                        <li><a href="https://www.fz-juelich.de/en/ias/ias-6/forschung/theory-of-multi-scale-neuronal-networks" target="_blank">Moritz Helias, RWTH Aachen / FZ Jülich</a></li>
-                        <li><a href="https://www.particle-theory.rwth-aachen.de/cms/Particle-Theory/Forschung/~gfhu/Gruppe-Kraemer/lidx/1" target="_blank">Michael Krämer, RWTH Aachen</a></li>
-                        <li><a href="https://phys.huji.ac.il/contacts/ringel_zohar" target="_blank">Zohar Ringel, Hebrew University</a></li>
-                        <li><a href="https://home.uni-leipzig.de/rosenow/Bernd_Rosenow/Welcome.html" target="_blank">Bernd Rosenow, University of Leipzig</a></li>
-                        <li><a href="https://www.uni-goettingen.de/de/588919.html" target="_blank">Peter Sollich, University of Göttingen</a></li>
-                        <li><a target="_blank">Alexander van Meegen, RWTH Aachen</a></li>
-                        <li><a href="https://people.epfl.ch/lenka.zdeborova?lang=en" target="_blank">Lenka Zdeborova, EPFL</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="cta-section">
-            <h2>Registration</h2>
-            <p>Join our mailing lists for the SPOT seminar and for journal announcements on recent publications physics-style works in machine learning to stay up to date.</p>
-            <div>
-                <a target="_blank" rel="noopener noreferrer" href="https://lists.fz-juelich.de/postorius/lists/phys4ml_seminar.lists.fz-juelich.de/" class="btn btn-secondary">
-                    Seminar Series
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href="https://lists.fz-juelich.de/postorius/lists/phys4ml.lists.fz-juelich.de/" class="btn btn-secondary">
-                    Journal Announcements
-                </a>
-            </div>
-        </div>
-        <div class="cta-section">
-            <h2>Resources</h2>
-            <p>Access slides, recordings, and additional material.</p>
-            <div class="cta-buttons">
-                <a target="_blank" rel="noopener noreferrer" href="https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#/" class="btn" >
-                    Access Materials
-                </a>
-            </div>
-        </div>
-
-        <div class="contact-info" id="contact">
-            <h3>Contact Information</h3>
-            <p>For inquiries about speaking opportunities or seminar details:</p>
-            <p><strong>Email:</strong> m.helias@fz-juelich.de</p>
-            <p><strong>Organizers:</strong> Prof. Moritz Helias</p>
-            <p>Institute for Advanced Simulation 6</p>
-            <p>Forschungszentrum Jülich</p>
-        </div>
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="side">
+    <div class="brand-row">
+      <img class="brand-logo" src="logo_sketch_colored.svg" alt="SPOT" />
+      <div class="brand">
+        <div class="dim">SPOT CONSORTIUM</div>
+        <div class="brand-title">Physics <em>for</em> ML</div>
+        <div class="dim v">vol. IV · bi-weekly · est. 2023</div>
+      </div>
+      <button class="theme-switch" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <!-- icon injected by JS -->
+      </button>
     </div>
 
-    <footer>
-       
-    </footer>
-    
-    <script src="speakers-data.js"></script>
-    <script src="script.js"></script>
+    <div>
+      <div class="side-nav-section">Sections</div>
+      <nav class="side-nav" id="sectionNav">
+        <a href="#/home" data-page="home" class="active">
+          <span class="hash">§1</span><span>Home</span>
+        </a>
+        <a href="#/archive" data-page="archive">
+          <span class="hash">§2</span><span>Archive</span>
+        </a>
+        <a href="#/about" data-page="about">
+          <span class="hash">§3</span><span>About</span>
+        </a>
+        <a href="#/contact" data-page="contact">
+          <span class="hash">§4</span><span>Contact</span>
+        </a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="side-nav-section">Elsewhere</div>
+      <nav class="side-nav">
+        <a href="https://lists.fz-juelich.de/postorius/lists/phys4ml_seminar.lists.fz-juelich.de/" target="_blank" rel="noopener">
+          <span class="hash">↗</span><span>Seminar list</span>
+        </a>
+        <a href="https://lists.fz-juelich.de/postorius/lists/phys4ml.lists.fz-juelich.de/" target="_blank" rel="noopener">
+          <span class="hash">↗</span><span>Journal list</span>
+        </a>
+        <a href="https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#/" target="_blank" rel="noopener">
+          <span class="hash">↗</span><span>Materials (Sciebo)</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="side-foot">
+      Last updated<br />
+      <span id="lastUpdated" style="color:var(--ink)"></span>
+    </div>
+  </aside>
+
+  <!-- ===== PAGES ===== -->
+  <div id="content">
+
+    <!-- ── HOME ── -->
+    <div class="page active" id="page-home">
+      <main>
+        <div class="topbar">
+          <div class="crumbs">/ <span>physics-for-ml</span> / home</div>
+          <div class="search">
+            <span>⌕</span>
+            <input id="topbarSearch" placeholder="search titles, speakers…" />
+            <span style="font-size:10px;color:var(--ink-3)">⌘K</span>
+          </div>
+        </div>
+
+        <div class="hero-head">
+          <span class="tag">SEMINAR SERIES</span>
+          <span><span class="dot"></span> accepting proposals · SS26</span>
+          <span>·</span>
+          <span>Bi-weekly · Thursdays · 10:00 CET</span>
+        </div>
+        <h1 class="title">Statistical <em>physics</em>, field theory, and the learning problem.</h1>
+        <p class="hero-abstract">
+          A bi-weekly seminar across nine theoretical-physics groups in the SPOT consortium. We read, present, and dissect work where the language of many-body physics — disorder averages, saddle-points, renormalisation — genuinely clarifies neural networks.
+        </p>
+        <div class="authors">
+          <span>Hosted by <b>SPOT Consortium</b></span>
+          <span>·</span>
+          <span>Organised by <b>Moritz Helias</b></span>
+          <span>·</span>
+          <span>Forschungszentrum Jülich · IAS-6</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="k">Talks</div>
+            <div class="v"><em id="statTalks">—</em></div>
+            <div class="u">since 09/2023</div>
+          </div>
+          <div class="stat">
+            <div class="k">Participating groups</div>
+            <div class="v">9</div>
+            <div class="u">across 8 institutions</div>
+          </div>
+          <div class="stat">
+            <div class="k">Next semester</div>
+            <div class="v">SS26</div>
+            <div class="u">programme TBA</div>
+          </div>
+        </div>
+
+        <h2 class="sec"><span class="num">§1.1</span> Next seminar</h2>
+        <div id="home-next-seminar"></div>
+
+        <h2 class="sec"><span class="num">§1.2</span> Recent seminars</h2>
+        <div class="talks" id="home-recent-talks"></div>
+        <div style="text-align:right;margin-top:16px">
+          <a class="btn ghost" href="#/archive" id="viewAllBtn" style="font-size:11px">View all talks →</a>
+        </div>
+
+        <h2 class="sec" style="margin-top:calc(56px * var(--density))"><span class="num">§1.3</span> Events</h2>
+        <a class="event-row" href="dpg2026.html">
+          <span>9–14 March 2026</span>
+          <div>
+            <h4>DPG Spring Meeting</h4>
+            <div class="note">Focus Sessions: Physics of AI</div>
+          </div>
+          <span>Dresden</span>
+        </a>
+
+        <div class="sheet-foot">
+          <span>Physics for ML · SPOT · IAS-6 · FZ Jülich</span>
+          <span>Set in IBM Plex &amp; Newsreader</span>
+          <span>arXiv-style layout</span>
+        </div>
+      </main>
+    </div>
+
+    <!-- ── ARCHIVE ── -->
+    <div class="page" id="page-archive">
+      <main>
+        <div class="topbar">
+          <div class="crumbs">/ <span>physics-for-ml</span> / archive</div>
+          <div class="search">
+            <span>⌕</span>
+            <input placeholder="search titles, speakers…" />
+            <span style="font-size:10px;color:var(--ink-3)">⌘K</span>
+          </div>
+        </div>
+
+        <h1 class="title">The <em>archive</em>.</h1>
+        <p class="hero-abstract">Every seminar delivered since the series began. Search by keyword or speaker name, and follow links to slides and recordings.</p>
+
+        <div class="archive-controls">
+          <input type="text" id="archiveSearch" placeholder="search: 'DMFT', 'Zdeborová', 'diffusion'…" />
+          <select id="archiveSort">
+            <option value="new">newest first</option>
+            <option value="speaker">by speaker</option>
+          </select>
+        </div>
+
+        <div class="archive-count" id="archiveCount"></div>
+        <div class="talks" id="archive-talks"></div>
+
+        <div class="pagination" id="archivePagination"></div>
+        <div class="pagination-meta" id="archivePaginationMeta"></div>
+
+        <div class="sheet-foot">
+          <span>Physics for ML · SPOT · IAS-6 · FZ Jülich</span>
+          <span>Set in IBM Plex &amp; Newsreader</span>
+          <span>arXiv-style layout</span>
+        </div>
+      </main>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="page" id="page-about">
+      <main>
+        <div class="topbar">
+          <div class="crumbs">/ <span>physics-for-ml</span> / about</div>
+          <div class="search">
+            <span>⌕</span>
+            <input placeholder="search titles, speakers…" />
+            <span style="font-size:10px;color:var(--ink-3)">⌘K</span>
+          </div>
+        </div>
+
+        <h1 class="title">About the <em>series</em>.</h1>
+
+        <div class="prose" style="margin-top:32px">
+          <h2>§3.1 &nbsp; Scope</h2>
+          <p>
+            Physics for Machine Learning is a bi-weekly seminar hosted by the SPOT consortium. The focus is narrow by design: we look at machine learning through the lens of theoretical physics — mean-field theory, replica calculations, random-matrix spectra, field-theoretic perturbation — and at physics through the lens of modern learning systems.
+          </p>
+          <div class="callout">
+            The aim is not to apply ML to physics. It is to make ML itself a proper object of physical study.
+          </div>
+          <h2>§3.2 &nbsp; Format</h2>
+          <p>
+            Ninety minutes on Zoom. The first sixty are presentation; the remaining thirty are open discussion, and we protect that latter half. Talks are recorded when speakers allow; slides are archived on the shared Sciebo drive.
+          </p>
+          <p>
+            Seminars are held bi-weekly on Thursdays at 10:00 CET during the academic year.
+          </p>
+          <h2>§3.3 &nbsp; Consortium</h2>
+          <p>Participating groups, by institution:</p>
+        </div>
+
+        <div class="consortium">
+          <div>
+            <div class="who"><b><a href="https://www.nas.ewi.tudelft.nl/" target="_blank">Caterina De Bacco</a></b><span>TU Delft</span></div>
+            <div class="n">01</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://itp.uni-frankfurt.de/~gros/#physicsAI" target="_blank">Claudius Gros</a></b><span>University of Frankfurt</span></div>
+            <div class="n">02</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://www.fz-juelich.de/en/ias/ias-6/forschung/theory-of-multi-scale-neuronal-networks" target="_blank">Moritz Helias</a></b><span>RWTH Aachen / FZ Jülich</span></div>
+            <div class="n">03</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://www.particle-theory.rwth-aachen.de/cms/Particle-Theory/Forschung/~gfhu/Gruppe-Kraemer/lidx/1" target="_blank">Michael Krämer</a></b><span>RWTH Aachen</span></div>
+            <div class="n">04</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://phys.huji.ac.il/contacts/ringel_zohar" target="_blank">Zohar Ringel</a></b><span>Hebrew University</span></div>
+            <div class="n">05</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://home.uni-leipzig.de/rosenow/Bernd_Rosenow/Welcome.html" target="_blank">Bernd Rosenow</a></b><span>University of Leipzig</span></div>
+            <div class="n">06</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://www.uni-goettingen.de/de/588919.html" target="_blank">Peter Sollich</a></b><span>University of Göttingen</span></div>
+            <div class="n">07</div>
+          </div>
+          <div>
+            <div class="who"><b>Alexander van Meegen</b><span>RWTH Aachen</span></div>
+            <div class="n">08</div>
+          </div>
+          <div>
+            <div class="who"><b><a href="https://people.epfl.ch/lenka.zdeborova?lang=en" target="_blank">Lenka Zdeborová</a></b><span>EPFL</span></div>
+            <div class="n">09</div>
+          </div>
+        </div>
+
+        <div class="sheet-foot">
+          <span>Physics for ML · SPOT · IAS-6 · FZ Jülich</span>
+          <span>Set in IBM Plex &amp; Newsreader</span>
+          <span>arXiv-style layout</span>
+        </div>
+      </main>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="page" id="page-contact">
+      <main>
+        <div class="topbar">
+          <div class="crumbs">/ <span>physics-for-ml</span> / contact</div>
+          <div class="search">
+            <span>⌕</span>
+            <input placeholder="search titles, speakers…" />
+            <span style="font-size:10px;color:var(--ink-3)">⌘K</span>
+          </div>
+        </div>
+
+        <h1 class="title"><em>Correspondence.</em></h1>
+        <p class="hero-abstract">Proposals, questions, and mailing-list requests are welcome. We reply within a week or two during term.</p>
+
+        <div class="contact-grid">
+          <div>
+            <div class="label">Organiser</div>
+            <div class="big">Prof. Moritz Helias</div>
+            <p>Institute for Advanced Simulation 6<br />Forschungszentrum Jülich</p>
+          </div>
+          <div>
+            <div class="label">Correspondence</div>
+            <div class="big"><a href="mailto:m.helias@fz-juelich.de">m.helias@fz-juelich.de</a></div>
+            <p>Subject line <code>[phys4ml]</code> helps us route quickly.</p>
+          </div>
+          <div>
+            <div class="label">Slides &amp; recordings</div>
+            <div class="big"><a href="https://fz-juelich.sciebo.de/s/c3z3A4696lgIlz5#/" target="_blank" rel="noopener">Sciebo drive →</a></div>
+            <p>Requires the password circulated on the mailing list.</p>
+          </div>
+          <div>
+            <div class="label">Propose a talk</div>
+            <div class="big">Send a title &amp; short abstract.</div>
+            <p>Include <i>availability Thu 10:00 CET</i> and relevant arXiv IDs.</p>
+          </div>
+        </div>
+
+        <h2 class="sec" style="margin-top:calc(64px * var(--density))"><span class="num">§4.1</span> Mailing lists</h2>
+        <p style="font-family:var(--serif);font-size:18px;max-width:56ch;color:var(--ink-2);margin-bottom:0">
+          Two distinct lists. The seminar list carries only seminar notices; the journal list carries weekly paper announcements from the consortium.
+        </p>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="https://lists.fz-juelich.de/postorius/lists/phys4ml_seminar.lists.fz-juelich.de/" target="_blank" rel="noopener">Subscribe to phys4ml_seminar</a>
+          <a class="btn ghost" href="https://lists.fz-juelich.de/postorius/lists/phys4ml.lists.fz-juelich.de/" target="_blank" rel="noopener">Journal announcements</a>
+        </div>
+
+        <div class="sheet-foot">
+          <span>Physics for ML · SPOT · IAS-6 · FZ Jülich</span>
+          <span>Set in IBM Plex &amp; Newsreader</span>
+          <span>arXiv-style layout</span>
+        </div>
+      </main>
+    </div>
+
+  </div><!-- #content -->
+</div><!-- .frame -->
+
+<script src="speakers-data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-

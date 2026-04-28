@@ -1,5 +1,12 @@
 const SPEAKERS_DATA = [
     {
+        name: "Emanuele Natale",
+        affiliation: "",
+        date: "Thursday, June 11, 2026",
+        title: "",
+        publications: []
+    },
+    {
         name: "Jean Barbier",
         affiliation: "ICTP Trieste",
         date: "Thursday, February 12, 2026",
