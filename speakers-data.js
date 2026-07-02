@@ -1,9 +1,23 @@
-const SPEAKERS_DATA = [
+const SPEAKERS_DATA = [    
+    {
+        name: "Christian Keup",
+        affiliation: "University of Parma",
+        date: "Thursday, July 9, 2026",
+        title: "Kernel rescaling for deep nets in the details: A parsimonious baseline theory",
+        publications: [ 
+          {
+	        title: "Kernel Renormalization in Bayesian Deep Neural Networks: the Equivalent Wishart Ansatz in the Proportional Regime",
+		authors: "Paolo Baglioni, Christian Keup, Vincenzo Zimbardo, Rosalba Pacelli, Alessandro Vezzani, Raffaella Burioni, Pietro Rotondo",
+		year: "2026",
+		url: "https://arxiv.org/pdf/2605.29684"
+            }
+        ]
+    },
     {
         name: "Emanuele Natale",
-        affiliation: "",
+        affiliation: "CNRS, Université Côte d'Azur",
         date: "Thursday, June 11, 2026",
-        title: "",
+        title: "The Strong Lottery Ticket Hypothesis: Random Subset Sums, Sparsity, and Structure (postponed)",
         publications: []
     },
     {
