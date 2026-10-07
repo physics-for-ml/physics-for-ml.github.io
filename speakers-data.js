@@ -1,5 +1,15 @@
 const SPEAKERS_DATA = [    
     {
+        name: "Katharine Fisher",
+        affiliation: "Massachusetts Institute of Technology",
+        date: "Thursday, October 8, 2026",
+        title: "Does adding gradient data to the training set help neural networks learn?",
+        publications: [ 
+          {           
+          }
+        ]
+    },
+    {
         name: "Christian Keup",
         affiliation: "University of Parma",
         date: "Thursday, July 9, 2026",
