@@ -215,12 +215,25 @@ function thumbSVG(motif, seed) {
   return `<svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:100%;background:var(--card)">${generateThumbContent(motif, seed)}</svg>`;
 }
 
+// ── Abstract paragraphs ────────────────────────────────────
+// Blank lines in the `abstract` field become separate paragraphs.
+function abstractHTML(text) {
+  if (!text) return '';
+  const paras = String(text).trim().split(/\n\s*\n/)
+    .map(p => `<p>${escHtml(p.trim()).replace(/\n/g, ' ')}</p>`)
+    .join('');
+  return `<div class="talk-abstract">${paras}</div>`;
+}
+
 // ── Talk card HTML ─────────────────────────────────────────
 function talkCardHTML(speaker, globalIndex) {
   const motif = MOTIFS[globalIndex % MOTIFS.length];
   const seed = globalIndex + 3;
   const date = parseSpeakerDate(speaker.date);
   const dateStr = formatDateNumeric(date);
+  const metaDateEl = speaker.time
+    ? `<span><span class="date">${dateStr}</span> <span class="talk-time">· ${escHtml(speaker.time)}</span></span>`
+    : `<span class="date">${dateStr}</span>`;
   const hasSlides = !!speaker.slides;
   const hasVideo = !!speaker.recording;
 
@@ -232,6 +245,10 @@ function talkCardHTML(speaker, globalIndex) {
     ? `<span class="asset-on" data-action="open-video" data-url="${escAttr(speaker.recording)}" data-name="${escAttr(speaker.name)}" data-title="${escAttr(speaker.title || '')}">▶ video</span>`
     : `<span>▷ —</span>`;
 
+  const absHTML = speaker.abstract
+    ? `<h4>Abstract</h4>${abstractHTML(speaker.abstract)}`
+    : '';
+
   const pubsHTML = speaker.publications && speaker.publications.length
     ? `<h4>Publications</h4><ul class="pub-list">${speaker.publications.map(p =>
         `<li><a href="${escAttr(p.url)}" target="_blank" rel="noopener">${escHtml(p.title)}</a><span class="pub-authors">${escHtml(p.authors)} · ${escHtml(p.year)}</span></li>`
@@ -242,7 +259,7 @@ function talkCardHTML(speaker, globalIndex) {
     ? `<div class="talk-links">${hasSlides ? `<a class="btn ghost" href="${escAttr(speaker.slides)}" target="_blank" rel="noopener">↓ Slides</a>` : ''}${hasVideo ? `<button class="btn ghost" data-action="open-video" data-url="${escAttr(speaker.recording)}" data-name="${escAttr(speaker.name)}" data-title="${escAttr(speaker.title || '')}">▶ Watch recording</button>` : ''}</div>`
     : '';
 
-  const hasDetails = pubsHTML || linksHTML;
+  const hasDetails = absHTML || pubsHTML || linksHTML;
   const expandBtn = hasDetails
     ? `<button class="talk-expand-toggle" data-action="toggle-expand">▼ details</button>`
     : '';
@@ -262,7 +279,7 @@ function talkCardHTML(speaker, globalIndex) {
   </div>
   <div class="talk-body">
     <div class="talk-meta">
-      <span class="date">${dateStr}</span>
+      ${metaDateEl}
       <span>${motif}</span>
     </div>
     <h3>${titleEl}</h3>
@@ -272,6 +289,7 @@ function talkCardHTML(speaker, globalIndex) {
   </div>
   <div class="talk-details">
     <div class="talk-details-inner">
+      ${absHTML}
       ${pubsHTML}
       ${linksHTML}
     </div>
@@ -302,20 +320,23 @@ function renderNextSeminar(container) {
     ? `${escHtml(next.name)} <span>· ${escHtml(next.affiliation)}</span>`
     : escHtml(next.name);
 
+  const nextAbstract = next.abstract ? abstractHTML(next.abstract) : '';
+
   let moreHTML = '';
   if (upcomingSpeakers.length > 1) {
     moreHTML = `<div class="upcoming-more"><div style="margin-bottom:8px;letter-spacing:0.06em">Also upcoming:</div>` +
       upcomingSpeakers.slice(1).map(s => {
         const d = formatDateNumeric(parseSpeakerDate(s.date));
-        return `<div class="upcoming-more-row"><span class="date">${d}</span><span>${escHtml(s.name)}${s.affiliation ? ` · ${escHtml(s.affiliation)}` : ''}</span></div>`;
+        return `<div class="upcoming-more-row"><span class="date">${d}${s.time ? ` <span class="talk-time">· ${escHtml(s.time)}</span>` : ''}</span><span>${escHtml(s.name)}${s.affiliation ? ` · ${escHtml(s.affiliation)}` : ''}</span></div>`;
       }).join('') + `</div>`;
   }
 
   container.innerHTML = `<div class="next-card has-speaker">
   <div>
-    <div class="next-date">${escHtml(next.date)}</div>
+    <div class="next-date">${escHtml(next.date)}${next.time ? ` · <span class="talk-time">${escHtml(next.time)}</span>` : ''}</div>
     ${titleLine}
     <div class="next-speaker-line">${speakerLine}</div>
+    ${nextAbstract}
     ${moreHTML}
   </div>
   <div class="btns" style="flex-direction:column;align-items:flex-start">
