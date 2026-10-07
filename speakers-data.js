@@ -1,9 +1,27 @@
+// Optional per-talk fields: `time`, `abstract`, `recording`, `slides`.
+//
+// `time` is a free-form string shown next to the date, e.g. "10:00 CET" or
+// "16:00-17:30 CEST". Leave it out for talks at the standing slot (the
+// bi-weekly Thursday 10:00 CET schedule stated on the front page).
+//
+// `abstract` is plain text. Leave it out (or empty) and nothing is shown.
+// Separate paragraphs with a blank line:
+//
+//     abstract: `First paragraph of the abstract.
+//
+//     Second paragraph.`,
+//
+// On past talks it appears under "Abstract" in the expandable details panel;
+// on the next upcoming talk it is shown directly on the front-page card.
+
 const SPEAKERS_DATA = [    
     {
         name: "Katharine Fisher",
         affiliation: "Massachusetts Institute of Technology",
         date: "Thursday, October 8, 2026",
+        time: "3:30 PM CEST",
         title: "Does adding gradient data to the training set help neural networks learn?",
+        abstract: "Gradient information is widely useful and available in applications, and is therefore natural to include in the training of neural networks. In particular, in materials modeling, it is common to use force data to train potential energy surfaces. Yet little is known theoretically about the impact of Sobolev training—regression with both function and gradient data—on the generalization error of highly overparameterized predictive models in high dimensions. In this talk, we present a precise characterization of this training modality for random feature (RF) models in the limit where the number of trainable parameters, input dimensions, and training data tend proportionally to infinity. Our model for Sobolev training reflects practical implementations by sketching gradient data onto finite dimensional subspaces. By combining the replica method from statistical physics with linearizations in operator-valued free probability theory, we derive a closed-form description for the generalization errors of the trained RF models. For target functions described by single- index models, we demonstrate that supplementing function data with additional gradient data does not universally improve predictive performance. Rather, the degree of overparameterization should inform the choice of training method. If time permits, we will discuss ongoing extensions of this work to feature learning as well as to the construction of energy surfaces for atomistic models.",
         publications: [ 
           {           
           }
@@ -26,8 +44,9 @@ const SPEAKERS_DATA = [
     {
         name: "Emanuele Natale",
         affiliation: "CNRS, Université Côte d'Azur",
-        date: "Thursday, June 11, 2026",
-        title: "The Strong Lottery Ticket Hypothesis: Random Subset Sums, Sparsity, and Structure (postponed)",
+        date: "Thursday, July 27, 2026",
+        title: "The Strong Lottery Ticket Hypothesis: Random Subset Sums, Sparsity, and Structure",
+        abstract: "Large random neural networks appear to already contain, at initialization, subnetworks that match the accuracy of trained ones. This phenomenon, the Strong Lottery Ticket Hypothesis (SLTH), recasts pruning as a question about random structure rather than training dynamics, and it turns out to have a clean combinatorial core: a reduction from neural-network approximation to the random subset-sum problem, where logarithmic overparameterization suffices precisely because exponentially many subset sums densely cover an interval. In this theorem-oriented overview I will use this single tool, in four guises, to organize the theory: scalar subset sums for convolutional networks, multidimensional subset sums for structured (filter) pruning, fixed-size subset sums for explicit sparsity guarantees, and a discrete variant (linked to the number-partitioning problem and its statistical-physics phase transition) for quantized weights. The talk closes with open problems on lower bounds, transformers, and multidimensional random subset sums.",
         publications: []
     },
     {
